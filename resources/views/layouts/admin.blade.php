@@ -117,7 +117,7 @@
     <!-- AdminLTE App -->
     <script src="{{asset('js/app.min.js')}}"></script>
 
-    <body onLoad="setInterval('contenido()',5000);">
+    <body onLoad="setInterval('contenido()',10000);">
     <!--<script>
       var ratonParado = null;
       var milisegundosLimite = 5000;
