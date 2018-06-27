@@ -1,0 +1,24 @@
+[all:vars]
+
+BASEDIR="{{ lookup('env','BASEDIR') }}"
+BACKUPDIR=/ssd/leandata/jacob/cluster/BeOnPrice/backup
+NTPCCCLIENTS=64000
+
+#Login for the account for the cluster
+USER=leandata
+# If has SUDO add SUDO=sudo otherwise actions requiring sudo may not run as expected
+SUDO="sudo"
+
+[meta]
+blade139 ansible_connection=local
+
+[datastores]
+blade140
+blade141
+blade142
+
+[tpccclients]
+
+[chaos]
+
+[tpccload]

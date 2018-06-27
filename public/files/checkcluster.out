@@ -1,0 +1,118 @@
+
+PLAY [meta,datastores] ********************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ********************************************************************************************************************************************************************************************
+ok: [blade139]
+ok: [blade142]
+ok: [blade141]
+ok: [blade140]
+
+TASK [Check All Components are stopped] ***************************************************************************************************************************************************************************
+changed: [blade142] => (item=/bin/bash ./checkAll.sh SHOW 2>&1 | tee thischeck.log | grep -w OK | wc -l)
+changed: [blade141] => (item=/bin/bash ./checkAll.sh SHOW 2>&1 | tee thischeck.log | grep -w OK | wc -l)
+changed: [blade139] => (item=/bin/bash ./checkAll.sh SHOW 2>&1 | tee thischeck.log | grep -w OK | wc -l)
+changed: [blade140] => (item=/bin/bash ./checkAll.sh SHOW 2>&1 | tee thischeck.log | grep -w OK | wc -l)
+changed: [blade141] => (item=cat thischeck.log)
+changed: [blade142] => (item=cat thischeck.log)
+changed: [blade139] => (item=cat thischeck.log)
+changed: [blade140] => (item=cat thischeck.log)
+
+TASK [debug] ******************************************************************************************************************************************************************************************************
+ok: [blade140] => {
+    "msg": "[u'12'] still UP"
+}
+ok: [blade139] => {
+    "msg": "[u'7'] still UP"
+}
+ok: [blade141] => {
+    "msg": "[u'12'] still UP"
+}
+ok: [blade142] => {
+    "msg": "[u'12'] still UP"
+}
+
+TASK [debug] ******************************************************************************************************************************************************************************************************
+ok: [blade139] => {
+    "out.results[1].stdout_lines": [
+        "Tue Jun 12 10:25:25 CEST 2018 ConfigurationManager OK", 
+        "Tue Jun 12 10:25:25 CEST 2018 Logger_1 OK", 
+        "Tue Jun 12 10:25:25 CEST 2018 Logger_1 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 SnapshotServer OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 CommitSequencer OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 ConflictManager_1 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVMS OK", 
+        "UP - 7, P:57             ********************* DOWN - 0, P:0"
+    ]
+}
+ok: [blade140] => {
+    "out.results[1].stdout_lines": [
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_1 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_2 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_3 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_4 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_5 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_6 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_7 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_8 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 Logger_1 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 Logger_2 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 QueryEngine_1 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 QueryEngine_2 OK", 
+        "UP - 12, P:0             ********************* DOWN - 0, P:0"
+    ]
+}
+ok: [blade141] => {
+    "out.results[1].stdout_lines": [
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_1 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_2 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_3 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_4 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_5 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_6 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_7 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_8 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 Logger_1 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 Logger_2 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 QueryEngine_1 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 QueryEngine_2 OK", 
+        "UP - 12, P:0             ********************* DOWN - 0, P:0"
+    ]
+}
+ok: [blade142] => {
+    "out.results[1].stdout_lines": [
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_1 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_2 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_3 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_4 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_5 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_6 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_7 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 KVDS_8 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 Logger_1 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 Logger_2 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 QueryEngine_1 OK", 
+        "Tue Jun 12 10:25:26 CEST 2018 QueryEngine_2 OK", 
+        "UP - 12, P:0             ********************* DOWN - 0, P:0"
+    ]
+}
+
+TASK [debug] ******************************************************************************************************************************************************************************************************
+ok: [blade139] => {
+    "out.results[0].stdout": "7"
+}
+ok: [blade140] => {
+    "out.results[0].stdout": "12"
+}
+ok: [blade141] => {
+    "out.results[0].stdout": "12"
+}
+ok: [blade142] => {
+    "out.results[0].stdout": "12"
+}
+
+PLAY RECAP ********************************************************************************************************************************************************************************************************
+blade139                   : ok=5    changed=1    unreachable=0    failed=0   
+blade140                   : ok=5    changed=1    unreachable=0    failed=0   
+blade141                   : ok=5    changed=1    unreachable=0    failed=0   
+blade142                   : ok=5    changed=1    unreachable=0    failed=0   
+
