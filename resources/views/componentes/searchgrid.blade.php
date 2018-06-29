@@ -1,3 +1,5 @@
+<!-- BARRA BUSCADOR DE COMPONENTES PARA EL MODO CUADRICULA -->
+
 {!! Form::open(array('url'=>'componente/grid','method'=>'GET','autocomplete'=>'off','role'=>'search')) !!}
 <div class="form-group">
 	<div class="input-group">

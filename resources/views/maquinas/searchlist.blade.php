@@ -1,3 +1,5 @@
+<!-- BARRA BUSCADOR DE MAQUINA PARA EL MODO TABLA -->
+
 {!! Form::open(array('url'=>'maquina/list','method'=>'GET','autocomplete'=>'off','role'=>'search')) !!}
 <div class="form-group">
 	<div class="input-group">

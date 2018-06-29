@@ -1,3 +1,5 @@
+<!-- BARRA BUSCADOR DE COMPONENTES PARA EL MODO TABLA -->
+
 {!! Form::open(array('url'=>'componente/list','method'=>'GET','autocomplete'=>'off','role'=>'search')) !!}
 <div class="form-group">
 	<div class="input-group">

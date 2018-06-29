@@ -1,4 +1,4 @@
-<!-- Extends indica que va a extender a la plantilla admin, Section que el contenido que esté en esta plantilla se colocará en donde esté @yield('contenido')-->
+<!-- CONTENIDO: VISTA DE UNA MAQUINA Y SUS COMPONENTES EN FORMATO TABLA -->
 @extends ('layouts.admin')
 @section ('contenido')
 <div class="container">
@@ -14,16 +14,15 @@
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-condensed table-hover">
 					<thead>
-						<!--<th>Id</th>-->
 						<th>Nombre</th>
 						<th>Origen</th>
 						<th>Estado</th>
 					</thead>
-					<!--Implementamos bucle que carge los valores de la tabla, los valores están almacenados en $maquina que es enviada por el Controlador-->
+					
 					<tbody>
+						<!--Implementamos bucle que carge los valores de la tabla, los valores están almacenados en $maquina que es enviada por el Controlador-->
 						@foreach ($componentes as $com)
 						<tr>
-							<!--<td>{{$com->id}}</td>-->
 							<td>{{$com->nombre}}</td>
 							<td>{{$com->origen}}</td>
 							@if($com->estado == "Off")
@@ -42,5 +41,4 @@
 </div>
     
 </div>
-<!-- /.container -->
 @endsection

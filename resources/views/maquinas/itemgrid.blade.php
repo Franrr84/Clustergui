@@ -1,4 +1,4 @@
-<!-- Extends indica que va a extender a la plantilla admin, Section que el contenido que esté en esta plantilla se colocará en donde esté @yield('contenido')-->
+<!-- CONTENIDO: VISTA DE UNA MAQUINA Y SUS COMPONENTES EN FORMATO CUADRICULA -->
 @extends ('layouts.admin')
 @section ('contenido')
 <div class="container">
@@ -29,5 +29,4 @@
     </div>
     
 </div>
-<!-- /.container -->
 @endsection

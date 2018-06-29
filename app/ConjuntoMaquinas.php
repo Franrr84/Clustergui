@@ -4,6 +4,11 @@ namespace Leanxcale;
 
 use Leanxcale\Maquina;
 
+/*
+  ConjuntoMaquinas: esta clase contiene un array con todas las maquinas y la información obtenida con el fichero inventory, también contiene
+  funciones asociadas a las maquinas, incluida iniciarConjunto que se encarga de leer de inventory.
+*/
+
 class ConjuntoMaquinas{
     public $maquinas;
     public $num_maquinas;
@@ -13,7 +18,10 @@ class ConjuntoMaquinas{
         $this->maquinas = array();
     }
 
-    //Inserta una maquina en el array y devuelve el id del elemento en el array
+    /*
+        setMaquina: inserta una maquina en el array y devuelve el id del elemento en el array
+        > Los parámetros de entrada contienen la información sobre la maquina
+    */
     public function setMaquina($nom,$est,$tip){
         $maq = new Maquina();
         
@@ -27,6 +35,10 @@ class ConjuntoMaquinas{
 
         return ($maq->id);
     }
+
+    /*
+        setMaquinaXById: asigna un valor al atributo X de la maquina especificada por el id
+    */
 
     public function setMaquinaNombreById($id,$nom){
         if($id < $this->num_maquinas){
@@ -52,39 +64,9 @@ class ConjuntoMaquinas{
         }
     }
 
-    //Devuelve un elemento del array por el id
-    public function getMaquinaById($id){
-        $m = new Maquina();
-
-        if($id < $this->num_maquinas){
-            $m = $this->maquinas[$id];
-        }
-
-        return $m;
-    }
-
-    //Devuelve el id de un elemento segun el nombre
-    public function getIdByName($nombre){
-        $maq_id = -1;
-        for($i=0;$i<$this->num_maquinas;$i++){
-            $maq=$this->getMaquinaById($i);
-            if($maq->nombre == $nombre){
-                $maq_id = $i;
-            }
-        }
-
-        return $maq_id;
-    }
-
-    public function getMaquinaIdById($id){
-        $maq = new Maquina();
-
-        if($id < $this->num_maquinas){
-            $maq = $this->getMaquinaById($id);
-            $idmaq = $maq->id;
-        }
-        return $idmaq;
-    }
+    /*
+        getMaquinaXById: obtiene el valor del atributo X de la maquina especificada por el id
+    */
 
     public function getMaquinaNombreById($id){
         $maq = new Maquina();
@@ -139,8 +121,48 @@ class ConjuntoMaquinas{
         return $id;
     }
 
-    //Devuelve el estado de una maquina segun los componentes: TRUE (todos los componentes OK) o FALSE (algun o todos los componentes ERROR)
-    //$id: id de la maquina que se consulta estados $gc: variable con todos los componentes
+    /*
+        getMaquinaById: devuelve una maquina del array por el id
+    */
+    public function getMaquinaById($id){
+        $m = new Maquina();
+
+        if($id < $this->num_maquinas){
+            $m = $this->maquinas[$id];
+        }
+        return $m;
+    }
+
+    /*
+        getIdByName: devuelve el id de un elemento segun el nombre
+    */
+    public function getIdByName($nombre){
+        $maq_id = -1;
+        for($i=0;$i<$this->num_maquinas;$i++){
+            $maq=$this->getMaquinaById($i);
+            if($maq->nombre == $nombre){
+                $maq_id = $i;
+            }
+        }
+        return $maq_id;
+    }
+/*
+    public function getMaquinaIdById($id){
+        $maq = new Maquina();
+
+        if($id < $this->num_maquinas){
+            $maq = $this->getMaquinaById($id);
+            $idmaq = $maq->id;
+        }
+        return $idmaq;
+    }
+*/
+
+    /*
+        getEstadoComponentes: devuelve el estado de una maquina segun los componentes: TRUE (todos los componentes OK) o FALSE (algun o todos los componentes ERROR)
+        > $id: id de la maquina que se consulta estados 
+        > $gc: variable con todos los componentes
+    */
     public function getEstadoComponentes($id,$gc){
         $res = "FALSE";
         $cont = 0;
@@ -164,7 +186,9 @@ class ConjuntoMaquinas{
         return $res;
     }
 
-    //Carga información del fichero de datos a la clase 
+    /*
+        iniciarConjunto: carga información del fichero de datos 'inventory' a la clase, creando maquinas y llenando el array 
+    */
     public function iniciarConjunto(){
         $operacion = "FALSE";
         $cadenas = file('files/inventory',FILE_SKIP_EMPTY_LINES);
