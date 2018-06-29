@@ -167,7 +167,7 @@ class ConjuntoMaquinas{
     //Carga información del fichero de datos a la clase 
     public function iniciarConjunto(){
         $operacion = "FALSE";
-        $cadenas = file('files\inventory',FILE_SKIP_EMPTY_LINES);
+        $cadenas = file('files/inventory',FILE_SKIP_EMPTY_LINES);
         if($cadenas != FALSE){
             //Cargamos informacion del fichero en el array de maquinas
             $lectura = "noread";

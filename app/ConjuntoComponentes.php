@@ -108,7 +108,7 @@ class ConjuntoComponentes{
     //$gm es grupo_maquinas, debe introducirse como parámetro de entrada y estar previamente inicializado
     public function iniciarConjunto(&$gm){
         $operacion = "FALSE";
-        $cadenas = file('files\checkcluster.out',FILE_SKIP_EMPTY_LINES);
+        $cadenas = file('files/checkcluster.out',FILE_SKIP_EMPTY_LINES);
 
         if($cadenas != FALSE){
             $lectura = "noread";
