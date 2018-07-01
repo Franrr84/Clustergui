@@ -10,12 +10,14 @@ USER=leandata
 SUDO="sudo"
 
 [meta]
+blade138
 blade139 ansible_connection=local
 
 [datastores]
 blade140
 blade141
 blade142
+blade143
 
 [tpccclients]
 

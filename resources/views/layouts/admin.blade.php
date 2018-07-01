@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -43,7 +44,7 @@
             <li class="header"></li>
 
               <!-- VISTAS -->
-              <li class="treeview">
+              <!--<li class="treeview">
                 <a href="#">
                   <i class="fa fa-laptop"></i>
                     <span>Vistas</span>
@@ -53,14 +54,18 @@
                   <li><a href="/maquina/grid"><i class="fa fa-circle-o"></i> Máquinas</a></li>
                   <li><a href="/componente/grid"><i class="fa fa-circle-o"></i> Componentes</a></li>
                 </ul>
-              </li>
+              </li>-->
+
+              <li><a href="/"><i class="fa fa-circle-o"></i><span>Inicio</span></a></li>
+              <li><a href="/maquina/grid"><i class="fa fa-circle-o"></i><span>Máquinas</span></a></li>
+              <li><a href="/componente/grid"><i class="fa fa-circle-o"></i><span>Componentes</span></a></li>
 
               <!-- CONFIGURACION -->
-              <li>
+              <!--<li>
                 <a href="#">
                   <i class="fa fa-cog"></i> <span>Configuración</span>
                 </a>
-              </li>            
+              </li>-->            
           </ul>
         </section>
       </aside>

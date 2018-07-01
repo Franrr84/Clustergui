@@ -36,11 +36,17 @@ class ComponenteController extends Controller
             $operacion = $this->grupo_maquinas->iniciarConjunto();
             if($operacion == "FALSE"){
                 $operacion = "ERRORINVENTORY";
+                $componente = NULL;
+                $query = NULL;
+                $maquinas = NULL;
             }
             else{
                 $operacion = $this->grupo_componentes->iniciarConjunto($this->grupo_maquinas);
                 if($operacion == "FALSE"){
                     $operacion = "ERRORCHECKCLUSTER";
+                    $componente = NULL;
+                    $query = NULL;
+                    $maquinas = NULL;
                 }
                 else{
                     //2º FASE - Almacenamos la información en la base de datos
@@ -80,11 +86,17 @@ class ComponenteController extends Controller
             $operacion = $this->grupo_maquinas->iniciarConjunto();
             if($operacion == "FALSE"){
                 $operacion = "ERRORINVENTORY";
+                $componente = NULL;
+                $query = NULL;
+                $maquinas = NULL;
             }
             else{
                 $operacion = $this->grupo_componentes->iniciarConjunto($this->grupo_maquinas);
                 if($operacion == "FALSE"){
                     $operacion = "ERRORCHECKCLUSTER";
+                    $componente = NULL;
+                    $query = NULL;
+                    $maquinas = NULL;
                 }
                 else{
                     //2º FASE - Almacenamos la información en la base de datos

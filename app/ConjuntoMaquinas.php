@@ -1,6 +1,6 @@
 <?php
 
-namespace Leanxcale;
+namespace Leanxcale; 
 
 use Leanxcale\Maquina;
 
@@ -124,6 +124,7 @@ class ConjuntoMaquinas{
     /*
         getMaquinaById: devuelve una maquina del array por el id
     */
+
     public function getMaquinaById($id){
         $m = new Maquina();
 
@@ -136,6 +137,7 @@ class ConjuntoMaquinas{
     /*
         getIdByName: devuelve el id de un elemento segun el nombre
     */
+
     public function getIdByName($nombre){
         $maq_id = -1;
         for($i=0;$i<$this->num_maquinas;$i++){
@@ -146,17 +148,6 @@ class ConjuntoMaquinas{
         }
         return $maq_id;
     }
-/*
-    public function getMaquinaIdById($id){
-        $maq = new Maquina();
-
-        if($id < $this->num_maquinas){
-            $maq = $this->getMaquinaById($id);
-            $idmaq = $maq->id;
-        }
-        return $idmaq;
-    }
-*/
 
     /*
         getEstadoComponentes: devuelve el estado de una maquina segun los componentes: TRUE (todos los componentes OK) o FALSE (algun o todos los componentes ERROR)
@@ -187,47 +178,79 @@ class ConjuntoMaquinas{
     }
 
     /*
+        getPorcentajeMaquinas: devuelve el tanto porciento de componentes encendidos en una maquina 
+        0: todos apagados, 1: todos encendidos, 0-1: warning, alguno está apagado
+        > $id: id de la maquina que se consulta estados 
+        > $gc: variable con todos los componentes
+    */
+
+    public function getPorcentajeMaquinas($id,$gc){
+        $res = 0.0;
+        $cont = 0;
+        $contok = 0;
+
+        $maq = $this->getMaquinaById($id);
+        for($i=0;$i<$gc->num_componentes;$i++){
+            $comp= new Componente;
+            $comp=$gc->getComponenteById($i);
+            if($comp->origen == $maq->nombre){
+                if($comp->estado == "On"){
+                    $contok++;
+                }
+                $cont++;
+            }
+        }
+        if($cont>0){
+            $res = $contok/$cont;
+        }
+
+        return $res;
+    }
+
+    /*
         iniciarConjunto: carga información del fichero de datos 'inventory' a la clase, creando maquinas y llenando el array 
     */
     public function iniciarConjunto(){
         $operacion = "FALSE";
-        $cadenas = file('files/inventory',FILE_SKIP_EMPTY_LINES);
-        if($cadenas != FALSE){
-            //Cargamos informacion del fichero en el array de maquinas
-            $lectura = "noread";
+        if(file_exists('files/inventory') != FALSE){
+            $cadenas = file('files/inventory',FILE_SKIP_EMPTY_LINES);
+            if($cadenas != FALSE){
+                //Cargamos informacion del fichero en el array de maquinas
+                $lectura = "noread";
 
-            foreach($cadenas as $cad){
-                if($lectura == "noread"){
-                    if(strpos($cad,"meta") != FALSE){
-                        $lectura = "readmeta";
+                foreach($cadenas as $cad){
+                    if($lectura == "noread"){
+                        if(strpos($cad,"meta") != FALSE){
+                            $lectura = "readmeta";
+                        }
+                    }
+                    else{
+                        if($lectura == "readdata"){
+                            if(strpos($cad,"tpccclients") == FALSE){
+                                $datamaq = explode(" ",$cad);
+                                $nom = trim($datamaq[0]);
+                                $this->setMaquina($nom,"Off","Datastores"); 
+                            }
+                            else{
+                                $lectura = "noread";
+                                $this->num_maquinas--;
+                            }
+                        }
+                        if($lectura == "readmeta"){
+                            if(strpos($cad,"datastores") == FALSE){
+                                $metamaq = explode(" ",$cad);
+                                $nom = trim($metamaq[0]);
+                                $this->setMaquina($nom,"Off","Meta"); 
+                            }
+                            else{
+                                $lectura = "readdata";
+                                $this->num_maquinas--;
+                            }   
+                        }
                     }
                 }
-                else{
-                    if($lectura == "readdata"){
-                        if(strpos($cad,"tpccclients") == FALSE){
-                            $datamaq = explode(" ",$cad);
-                            $nom = trim($datamaq[0]);
-                            $this->setMaquina($nom,"Off","Datastores"); 
-                        }
-                        else{
-                            $lectura = "noread";
-                            $this->num_maquinas--;
-                        }
-                    }
-                    if($lectura == "readmeta"){
-                        if(strpos($cad,"datastores") == FALSE){
-                            $metamaq = explode(" ",$cad);
-                            $nom = trim($metamaq[0]);
-                            $this->setMaquina($nom,"Off","Meta"); 
-                        }
-                        else{
-                            $lectura = "readdata";
-                            $this->num_maquinas--;
-                        }   
-                    }
-                }
+                $operacion = "TRUE";
             }
-            $operacion = "TRUE";
         }
         return $operacion;
     }

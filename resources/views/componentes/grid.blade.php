@@ -42,9 +42,9 @@
       {{$componente->render()}}
       
     @elseif ($operacion == "ERRORCHECKCLUSTER")
-      <h4>Error de inicio: no se ha encontrado el fichero 'checkcluster.out'</h4>
+      <h4>Error al cargar los componentes: no se ha encontrado el fichero 'checkcluster.out'</h4>
     @elseif ($operacion == "ERRORINVENTORY")
-      <h4>Error de inicio: no se ha encontrado el fichero 'inventory'</h4>
+      <h4>Error al cargar los componentes: no se ha encontrado el fichero 'inventory'</h4>
     @endif
   </div>
 </div>
