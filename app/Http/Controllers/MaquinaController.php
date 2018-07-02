@@ -235,4 +235,40 @@ class MaquinaController extends Controller
         
         return view('maquinas.itemlist',["maquina"=>$maquina,"componentes"=>$componentes]);  
     }    
+
+    public function itemgridturnon($id){
+        $operacion = $this->grupo_maquinas->iniciarConjunto();
+        if($operacion != "FALSE"){
+            $operacion = $this->grupo_componentes->iniciarConjunto($this->grupo_maquinas);
+            if($operacion != "FALSE"){
+                $id = $id-1;
+                if($id < $this->grupo_maquinas->num_maquinas){
+                    if($this->grupo_maquinas->getMaquinaEstadoById($id) == "Off"){
+                        //EJECUTAR SCRIPT
+                        shell_exec('sh test2.sh');
+                    }
+                }
+            }
+        }
+
+        return redirect()->action('MaquinaController@gridview');
+    }
+
+    public function itemgridturnoff($id){
+        $operacion = $this->grupo_maquinas->iniciarConjunto();
+        if($operacion != "FALSE"){
+            $operacion = $this->grupo_componentes->iniciarConjunto($this->grupo_maquinas);
+            if($operacion != "FALSE"){
+                $id = $id-1;
+                if($id < $this->grupo_maquinas->num_maquinas){
+                    if($this->grupo_maquinas->getMaquinaEstadoById($id) == "On"){
+                        //EJECUTAR SCRIPT
+                        shell_exec('sh test2.sh');
+                    }
+                }
+            }
+        }
+
+        return redirect()->action('MaquinaController@gridview');
+    }
 }

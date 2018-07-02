@@ -24,4 +24,6 @@ Route::get('componente/grid','ComponenteController@gridview');
 Route::get('componente/list','ComponenteController@listview');
 Route::get('maquina/itemgrid/{id}','MaquinaController@itemgridview');
 Route::get('maquina/itemlist/{id}','MaquinaController@itemlistview');
+Route::get('maquina/itemturnon/{id}','MaquinaController@itemgridturnon');
+Route::get('maquina/itemturnoff/{id}','MaquinaController@itemgridturnoff');
 
