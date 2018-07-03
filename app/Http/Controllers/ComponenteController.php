@@ -130,6 +130,7 @@ class ComponenteController extends Controller
         }
     } 
 
+    //Función que se ejecuta al querer encender un componente desde la vista cuadricula de componentes
     public function componentegridturnon($id){
         $operacion = $this->grupo_maquinas->iniciarConjunto();
         if($operacion != "FALSE"){
@@ -146,7 +147,6 @@ class ComponenteController extends Controller
                         //EJECUTAR SCRIPT (MODIFICAR)
                         $comando = "sudo sh /var/www/Clustergui/public/files/encender.sh";
                         exec($comando . ">files/" . $salida);
-                        //exec("sudo sh /var/www/Clustergui/public/files/script1.sh>files/salida.txt");
                     }
                 }
             }
@@ -155,6 +155,7 @@ class ComponenteController extends Controller
         return redirect()->action('ComponenteController@gridview');
     }
 
+    //Función que se ejecuta al querer apagar un componente desde la vista cuadricula de componentes
     public function componentegridturnoff($id){
         $operacion = $this->grupo_maquinas->iniciarConjunto();
         if($operacion != "FALSE"){
@@ -180,7 +181,7 @@ class ComponenteController extends Controller
         return redirect()->action('ComponenteController@gridview');
     }
 
-
+    //Función que se ejecuta al querer encender un componente desde la vista listado de componentes
     public function componentelistturnon($id){
         $operacion = $this->grupo_maquinas->iniciarConjunto();
         if($operacion != "FALSE"){
@@ -206,6 +207,7 @@ class ComponenteController extends Controller
         return redirect()->action('ComponenteController@listview');
     }
 
+    //Función que se ejecuta al querer apagar un componente desde la vista listado de componentes
     public function componentelistturnoff($id){
         $operacion = $this->grupo_maquinas->iniciarConjunto();
         if($operacion != "FALSE"){
