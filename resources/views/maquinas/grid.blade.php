@@ -27,9 +27,9 @@
                   @endif
                   <div class="card-body">
                       <h4 class="card-title">{{$maq->nombre}}</h4>
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <a href="/maquina/itemturnon/{{$maq->id}}"><button class="btn btn-default btn-block">Encender</button></a>
-                      </div>
+                      </div>-->
                   </div>
                 @else
                   <!-- MAQUINAS OK O WARNING -->
@@ -41,9 +41,9 @@
                     @endif
                     <div class="card-body">
                       <h4 class="card-title">{{$maq->nombre}}</h4>
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <a href="#"><button class="btn btn-default btn-block">Apagar</button></a>
-                      </div>
+                      </div>-->
                     </div>
                   @else
                     @if($maquinas->getEstadoComponentes($maq->id-1,$componentes) == "TRUE")
@@ -53,9 +53,9 @@
                     @endif
                     <div class="card-body">
                       <h4 class="card-title">{{$maq->nombre}}</h4>
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <a href="#"><button class="btn btn-default btn-block">Apagar</button></a>
-                      </div>
+                      </div>-->
                     </div>
                   @endif
                 @endif

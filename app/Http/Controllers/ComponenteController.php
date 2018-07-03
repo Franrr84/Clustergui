@@ -129,4 +129,105 @@ class ComponenteController extends Controller
             return view('componentes.list',["componente"=>$componente,"operacion"=>$operacion,"searchText"=>$query,"maquinas"=>$maquinas]);    
         }
     } 
+
+    public function componentegridturnon($id){
+        $operacion = $this->grupo_maquinas->iniciarConjunto();
+        if($operacion != "FALSE"){
+            $operacion = $this->grupo_componentes->iniciarConjunto($this->grupo_maquinas);
+            if($operacion != "FALSE"){
+                $id = $id-1;
+                if($id < $this->grupo_componentes->num_componentes){
+                    $comp = $this->grupo_componentes->getComponenteById($id);
+                    if($comp->estado == "Off"){
+                        //CREAR ARCHIVO DE SALIDA (BORRAR)
+                        $salida = $comp->origen . "_" . $comp->nombre . ".log";
+                        exec("sudo touch" . $salida);
+                        
+                        //EJECUTAR SCRIPT (MODIFICAR)
+                        $comando = "sudo sh /var/www/Clustergui/public/files/encender.sh";
+                        exec($comando . ">files/" . $salida);
+                        //exec("sudo sh /var/www/Clustergui/public/files/script1.sh>files/salida.txt");
+                    }
+                }
+            }
+        }
+
+        return redirect()->action('ComponenteController@gridview');
+    }
+
+    public function componentegridturnoff($id){
+        $operacion = $this->grupo_maquinas->iniciarConjunto();
+        if($operacion != "FALSE"){
+            $operacion = $this->grupo_componentes->iniciarConjunto($this->grupo_maquinas);
+            if($operacion != "FALSE"){
+                $id = $id-1;
+                if($id < $this->grupo_componentes->num_componentes){
+                    $comp = $this->grupo_componentes->getComponenteById($id);
+                    if($comp->estado == "On"){
+                        //EJECUTAR SCRIPT
+                        //CREAR ARCHIVO DE SALIDA (BORRAR)
+                        $salida = $comp->origen . "_" . $comp->nombre . ".log";
+                        exec("sudo touch" . $salida);
+                        
+                        //EJECUTAR SCRIPT (MODIFICAR)
+                        $comando = "sudo sh /var/www/Clustergui/public/files/apagar.sh";
+                        exec($comando . ">files/" . $salida);
+                    }
+                }
+            }
+        }
+
+        return redirect()->action('ComponenteController@gridview');
+    }
+
+
+    public function componentelistturnon($id){
+        $operacion = $this->grupo_maquinas->iniciarConjunto();
+        if($operacion != "FALSE"){
+            $operacion = $this->grupo_componentes->iniciarConjunto($this->grupo_maquinas);
+            if($operacion != "FALSE"){
+                $id = $id-1;
+                if($id < $this->grupo_componentes->num_componentes){
+                    $comp = $this->grupo_componentes->getComponenteById($id);
+                    if($comp->estado == "Off"){
+                        //EJECUTAR SCRIPT
+                        //CREAR ARCHIVO DE SALIDA (BORRAR)
+                        $salida = $comp->origen . "_" . $comp->nombre . ".log";
+                        exec("sudo touch" . $salida);
+                        
+                        //EJECUTAR SCRIPT (MODIFICAR)
+                        $comando = "sudo sh /var/www/Clustergui/public/files/encender.sh";
+                        exec($comando . ">files/" . $salida);
+                    }
+                }
+            }
+        }
+
+        return redirect()->action('ComponenteController@listview');
+    }
+
+    public function componentelistturnoff($id){
+        $operacion = $this->grupo_maquinas->iniciarConjunto();
+        if($operacion != "FALSE"){
+            $operacion = $this->grupo_componentes->iniciarConjunto($this->grupo_maquinas);
+            if($operacion != "FALSE"){
+                $id = $id-1;
+                if($id < $this->grupo_componentes->num_componentes){
+                    $comp = $this->grupo_componentes->getComponenteById($id);
+                    if($comp->estado == "On"){
+                        //EJECUTAR SCRIPT
+                        //CREAR ARCHIVO DE SALIDA (BORRAR)
+                        $salida = $comp->origen . "_" . $comp->nombre . ".log";
+                        exec("sudo touch" . $salida);
+                        
+                        //EJECUTAR SCRIPT (MODIFICAR)
+                        $comando = "sudo sh /var/www/Clustergui/public/files/apagar.sh";
+                        exec($comando . ">files/" . $salida);
+                    }
+                }
+            }
+        }
+
+        return redirect()->action('ComponenteController@listview');
+    }
 }

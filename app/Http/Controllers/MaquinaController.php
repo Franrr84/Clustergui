@@ -236,7 +236,7 @@ class MaquinaController extends Controller
         return view('maquinas.itemlist',["maquina"=>$maquina,"componentes"=>$componentes]);  
     }    
 
-    public function itemgridturnon($id){
+    /*public function itemgridturnon($id){
         $operacion = $this->grupo_maquinas->iniciarConjunto();
         if($operacion != "FALSE"){
             $operacion = $this->grupo_componentes->iniciarConjunto($this->grupo_maquinas);
@@ -245,7 +245,7 @@ class MaquinaController extends Controller
                 if($id < $this->grupo_maquinas->num_maquinas){
                     if($this->grupo_maquinas->getMaquinaEstadoById($id) == "Off"){
                         //EJECUTAR SCRIPT
-                        shell_exec('sh test2.sh');
+                        exec("sudo sh /var/www/Clustergui/public/files/script1.sh>files/salida.txt");
                     }
                 }
             }
@@ -270,5 +270,5 @@ class MaquinaController extends Controller
         }
 
         return redirect()->action('MaquinaController@gridview');
-    }
+    }*/
 }

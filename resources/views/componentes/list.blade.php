@@ -23,6 +23,7 @@
 						<th>Nombre</th>
 						<th>Origen</th>
 						<th>Estado</th>
+						<th>Acción</th>
 					</thead>
 					
 					<tbody>
@@ -40,6 +41,11 @@
 								<td style="color: red">{{$com->estado}}</td>
 							@else
 								<td style="color: green">{{$com->estado}}</td>
+							@endif
+							@if($com->estado == "Off")
+								<td><a href="/componente/componentelistturnon/{{$com->id}}"><button class="btn btn-default btn-block">Encender</button></a></td>
+							@else
+								<td><a href="/componente/componentelistturnoff/{{$com->id}}"><button class="btn btn-default btn-block">Apagar</button></a></td>
 							@endif
 						</tr>
 						@endforeach

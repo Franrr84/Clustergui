@@ -31,7 +31,16 @@
                   @if ($maquinas->getOrigenId($com->origen) != -1)
                     <p class="card-text"><a href="/maquina/itemgrid/{{$maquinas->getOrigenId($com->origen)}}">{{$com->origen}}</a><p>
                   @else
-                    <td>{{$com->origen}}</td>
+                    <p class="card-text">{{$com->origen}}<p>
+                  @endif
+                  @if ($com->estado != "On")
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <a href="/componente/componentegridturnon/{{$com->id}}"><button class="btn btn-default btn-block">Encender</button></a>
+                    </div>
+                  @else
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <a href="/componente/componentegridturnoff/{{$com->id}}"><button class="btn btn-default btn-block">Apagar</button></a>
+                    </div>
                   @endif
                 </div>
               </div>
