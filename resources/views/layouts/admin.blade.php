@@ -26,7 +26,8 @@
         
         <!-- LOGO -->
         <a href="/" class="logo">
-          <img src="{{asset('img/logoleanxcale2.png')}}" class="img-responsive" alt="Responsive image" style="margin-top: 7%">
+          <!--<img src="{{asset('img/logoleanxcale2.png')}}" class="img-responsive" alt="Responsive image" style="margin-top: 7%">-->
+          <img src="{{asset('img/logoleanxcale2.png')}}" class="img-responsive" alt="Responsive image">
         </a>
 
         <!-- BARRA SUPERIOR (ENCIMA DE CONTENIDO) -->

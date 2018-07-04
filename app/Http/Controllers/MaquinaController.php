@@ -81,7 +81,7 @@ class MaquinaController extends Controller
                     ->orWhere('estado','LIKE','%'.$query.'%')
                     ->where('visibilidad','=','1')
                     ->orderBy('id','asc')
-                    ->paginate(8);
+                    ->paginate(10);
                     $componentes = $this->grupo_componentes;
                     $maquinas = $this->grupo_maquinas;
 
@@ -185,7 +185,7 @@ class MaquinaController extends Controller
                 $componentes=DB::table('componentes')->orWhere('origen','LIKE','%'.$maquina->nombre.'%')
                     ->where('visibilidad','=','1')
                     ->orderBy('id','asc')
-                    ->paginate(8);
+                    ->paginate(10);
             }
         }
         
@@ -235,40 +235,4 @@ class MaquinaController extends Controller
         
         return view('maquinas.itemlist',["maquina"=>$maquina,"componentes"=>$componentes]);  
     }    
-
-    /*public function itemgridturnon($id){
-        $operacion = $this->grupo_maquinas->iniciarConjunto();
-        if($operacion != "FALSE"){
-            $operacion = $this->grupo_componentes->iniciarConjunto($this->grupo_maquinas);
-            if($operacion != "FALSE"){
-                $id = $id-1;
-                if($id < $this->grupo_maquinas->num_maquinas){
-                    if($this->grupo_maquinas->getMaquinaEstadoById($id) == "Off"){
-                        //EJECUTAR SCRIPT
-                        exec("sudo sh /var/www/Clustergui/public/files/script1.sh>files/salida.txt");
-                    }
-                }
-            }
-        }
-
-        return redirect()->action('MaquinaController@gridview');
-    }
-
-    public function itemgridturnoff($id){
-        $operacion = $this->grupo_maquinas->iniciarConjunto();
-        if($operacion != "FALSE"){
-            $operacion = $this->grupo_componentes->iniciarConjunto($this->grupo_maquinas);
-            if($operacion != "FALSE"){
-                $id = $id-1;
-                if($id < $this->grupo_maquinas->num_maquinas){
-                    if($this->grupo_maquinas->getMaquinaEstadoById($id) == "On"){
-                        //EJECUTAR SCRIPT
-                        shell_exec('sh test2.sh');
-                    }
-                }
-            }
-        }
-
-        return redirect()->action('MaquinaController@gridview');
-    }*/
 }

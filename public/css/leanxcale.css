@@ -31,3 +31,18 @@ margin-right: 0px;
 margin-left: 0px;
 margin-right: 0px;
 }
+.container{
+  width: auto;
+}
+.col-lg-3{
+  width: 20%;
+}
+header .logo .img-responsive{
+  margin-top: 10px;
+}
+.container .col-lg-6 #maquinas{
+  margin-left: 25%;
+}
+.container .col-lg-6 #componentes{
+  margin-left: 25%;
+}
